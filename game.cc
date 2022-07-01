@@ -16,7 +16,6 @@ Game::Game() {
   cbreak();
   noecho();
 
-
   width = 124;
   height = 25;
   win = newwin(height,width,4,4);
@@ -65,8 +64,6 @@ void Game::keep_char_in_screen(int y,int x) {
   mvwaddch(win,y, x, '@');
   wrefresh(win);
 
-
-
 }
 void Game::move_player(int in) {
 
@@ -85,6 +82,11 @@ void Game::move_player(int in) {
     wrefresh(win);
     x++;
 
+    if (x >  width - 3) {
+      x--;
+
+    }
+
 
   } if (in == 'k') {
 
@@ -92,7 +94,10 @@ void Game::move_player(int in) {
     mvwaddch(win,y, x, ' ');
     wrefresh(win);
     y--;
+    if (y < 1) {
+      y++;
 
+    }
 
   }if (in == 'j') {
 
@@ -100,6 +105,10 @@ void Game::move_player(int in) {
       mvwaddch(win,y, x, ' ');
       wrefresh(win);
       y++;
+      if (y > height -2) {
+
+        y--;
+      }
 
     } 
     if (in == 'h') {
@@ -108,8 +117,12 @@ void Game::move_player(int in) {
       mvwaddch(win,y, x, ' ');
       wrefresh(win);
       x--;
+      if (x < 1)
+        x++;
 
     } 
+      mvwaddch(win,y, x, '@');
+      wrefresh(win);
 
   }
 ///////////////////////////////////////////////
@@ -124,5 +137,7 @@ Game::~Game() {
   endwin();
 
 }
+
+
 
 
