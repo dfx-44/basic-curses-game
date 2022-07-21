@@ -4,25 +4,32 @@
 
 
 //using namespace std;
+//
+    //                            TODO:    put map on the player window
+    //
+    //                            TODO:    give color to the chars 
+    //
+    //                            TODO:    multi-thread the movement and the zombies  
+//
 
 bool RUNNING;                   // runs the main loop
 
 void get_dir(Game *g) {
 
-  int in = getch();
+    int in = getch();
 
-  // here we take input of the player
-  if (in == 'q') {
+    // here we take input of the player
+    if (in == 'q') {
 
-    RUNNING = false;
+        RUNNING = false;
 
-  }
+    }
 
-  else {
+    else {
 
-    // moves the player
-    g->move_player(in);
-  }
+        // moves the player
+        g->move_player(in);
+    }
 
 }
 
@@ -32,22 +39,22 @@ void get_dir(Game *g) {
 ///////////////////////////////////////////////
 int main() {
 
-  //the main loop bool
-  RUNNING = true;
+    //the main loop bool
+    RUNNING = true;
 
-  // calls the game and initiates ncurses 
-  // inits in its constructor
-  Game *g= new Game;
+    // calls the game and initiates ncurses 
+    // inits in its constructor
+    Game *g= new Game;
 
-  do{
+    do{
 
-    // this FUNCTION should be should be multi-threaded
-    get_dir(g);
+        // this FUNCTION should be should be multi-threaded
+        get_dir(g);
 
-  }while(RUNNING);
+    }while(RUNNING);
 
 
-  g->~Game();
-  return 0;
+    g->~Game();
+    return 0;
 
 }

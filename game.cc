@@ -1,7 +1,9 @@
 //#include <iostream> 
+
 #include <ncurses.h>
 
 #include "game.h"
+#include "global.h"
 
 //using namespace std;
 ///////////////////////////////////////////////
@@ -16,9 +18,10 @@ Game::Game() {
   cbreak();
   noecho();
 
-  width = 124;
-  height = 25;
-  win = newwin(height,width,4,4);
+  int width = 124;
+  int height = 25;
+  main_y = 4, main_x = 4;
+  win = newwin(height,width,main_y,main_x);
 
   x = 10, y=10;
 
@@ -35,41 +38,10 @@ Game::Game() {
 //       move player 
 ///////////////////////////////////////////////
 
-void Game::keep_char_in_screen(int y,int x) {
-
-  if (y >= height) {
-
-    y--;
-
-  }
-
-  if (y <= 12) {
-
-    y++;
-
-  }
-
-  if (x <=12) {
-
-    x++;
-
-  }
-
-  if (x >= width) {
-
-    x--; 
-
-  }
-
-  mvwaddch(win,y, x, '@');
-  wrefresh(win);
-
-}
 void Game::move_player(int in) {
 
-  /* TODO           1. set all the movements of the player here
-   *                2. make boundries on the corners of the screen
-   *                3. make the boundries to the current map on the window
+   /*                3. make the boundries to the current map on the window
+    *                4. put the map on the screen with for loops
    **/
 
   // initializes the position of the player 
@@ -121,10 +93,27 @@ void Game::move_player(int in) {
         x++;
 
     } 
+      /* moves to the player 
+      * char to the correct place */
       mvwaddch(win,y, x, '@');
       wrefresh(win);
 
   }
+///////////////////////////////////////////////
+//
+//   Put Map  
+///////////////////////////////////////////////
+
+void Game::put_map( *map[]) {
+
+    for(int i = 0; i< ;i++){
+
+
+    }
+
+
+}
+
 ///////////////////////////////////////////////
 //
 //      Game Destructor 
@@ -137,7 +126,3 @@ Game::~Game() {
   endwin();
 
 }
-
-
-
-
